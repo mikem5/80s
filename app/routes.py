@@ -6,7 +6,7 @@ import tld
 
 
 
-conn = psycopg2.connect("host=192.168.3.15 dbname=eight user=not_public password=not_public")
+conn = psycopg2.connect("host=not_public dbname=eight user=not_public password=not_public")
 cur = conn.cursor()
 
 
