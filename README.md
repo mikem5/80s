@@ -2,4 +2,4 @@
 80s synthwave website
 
 
-view the synthwave corrections png
+view the screenshot corrections png
