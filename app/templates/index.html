@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+<meta charset="UTF-8">
+<title>synth scraper</title>
+
+  
+  
+
+
+<style>
+
+      body {
+        width: 90%;
+        margin: 30px auto;
+        font-family: sans-serif;
+      }
+
+      h3 {
+        text-align: center;
+	font-size: 1.65em;
+	margin: 0 0 30px;
+      }
+
+      div {
+	display: flex;
+	flex-wrap: wrap;
+      }
+
+      a {
+	display: inline-block;
+	margin-bottom: 4px;
+	width: calc(10% - 8px);
+	margin-right: 25px;
+	text-decoration: none;
+	color: black;
+      }
+
+      a:nth-of-type(2n) {
+	margin-right: 10px;
+      }
+
+      @media screen and (min-width: 50em) {
+	a {
+		width: calc(15% - 0px);
+	}	
+
+	a:nth-of-type(2n) {
+		margin-right: 8px;
+	}		
+
+	a:nth-of-type(4n) {
+		margin-right: 8px;
+ 	 }	
+}	
+
+
+
+      figure {
+	margin: 0;
+	overflow: hidden;
+      }
+
+      figcaption {
+	margin-top: 5px;
+      }
+
+      img {
+	border: none;
+	max-width: 99%;
+	height: auto;
+	display: block;
+	background: #ccc;
+      }
+
+      .p a {
+	display: inline;
+	font-size: 13px;
+	margin: 0;
+	text-decoration: underline;
+	color: blue;
+      }
+
+      .p {
+        text-align: center;
+	font-size: 13px;
+	padding-top: 100px;
+      }
+
+
+
+
+
+
+
+
+</style>
+  
+</head>
+
+
+
+
+<body>
+
+<h3>youtube posts</h3>
+
+
+<div>
+
+  {% for post in yt %}
+  <iframe id="ytplayer" type="text/html" width="640" height="360"
+						     src="https://www.youtube.com/embed/{{ post.id }}?autoplay=0&origin=test.net"
+	      frameborder="0"></iframe>
+
+  {% endfor %}
+
+</div>
+
+
+<h3>free albums from the past week</h3>
+
+
+<div>
+
+  {% for post in zero %}
+	<a href="{{ post.url }}">
+		<figure>
+			<img src=" {{ post.img }}" alt="">
+			<figcaption> {{ post.meta }} released {{ post.date }}</figcaption>
+			
+		</figure>
+	</a>	
+
+
+  {% endfor %}
+
+</div>
+
+ 
+<h3>Albums from the past week</h3>
+
+
+<div>
+
+  {% for post in cost %}
+	<a href="{{ post.url }}">
+		<figure>
+			<img src=" {{ post.img }}" alt="">
+			<figcaption> {{ post.meta }} {{ post.price }} released {{ post.date }}</figcaption>
+		</figure>
+	</a>	
+
+
+  {% endfor %}
+
+</div>
+ 
+
+</body>
+
+</html>
