@@ -3,3 +3,7 @@
 
 
 view the screenshot corrections png
+
+html is index.html under app/templates
+
+main flask route is the routes.py under app/
