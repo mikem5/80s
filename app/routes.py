@@ -10,14 +10,15 @@ conn = psycopg2.connect("host=192.168.3.15 dbname=eight user=mikem_read password
 cur = conn.cursor()
 
 
+
+
+# bandcamp generation
 dt = datetime.datetime.now() - datetime.timedelta(7)
 cur.execute("SELECT * FROM bandcamp WHERE published > (%s)", (dt,))
 bc_rows = cur.fetchall()
 conn.commit()
 
 bc_rows = sorted(bc_rows, key=lambda x: x[6], reverse=True)
-
-
 
 
 bc_cost = []
@@ -40,14 +41,12 @@ for x in bc_rows:
         pass
 
 
-
+# youtube generation
 cur.execute("SELECT * FROM youtube;  ")
 yt_rows = cur.fetchall()
 conn.commit()
 
 yt_rows = sorted(yt_rows, key=lambda x: x[1], reverse=True)
-
-
 
 yt_posts = []
 
@@ -64,11 +63,24 @@ for i in range(8):
 
 
 
+# images generation
+dt = datetime.datetime.now() - datetime.timedelta(2)
+cur.execute("SELECT * FROM images WHERE date > (%s)", (dt,))
+img_rows = cur.fetchall()
+conn.commit()
+
+img_rows = sorted(img_rows, key=lambda x: x[1], reverse=True)
+
+img_posts =[]
+for x in img_rows:
+    di = {'img' : x[3].split('/',1)[-1] }
+    img_posts.append(di)
+
 
 @app.route('/')
 @app.route('/index')
 def index():
 
-    return render_template('index.html', zero=bc_zero, cost=bc_cost, yt=yt_posts)
+    return render_template('index.html', zero=bc_zero, cost=bc_cost, yt=yt_posts, imgs = img_posts)
 
 
