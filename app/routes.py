@@ -7,6 +7,10 @@ import tld
 
 
 conn = psycopg2.connect("host=192.168.3.15 dbname=eight user=mikem_read password=54321")
+
+# need this or remote server breaks
+conn.set_client_encoding("utf-8")
+
 cur = conn.cursor()
 
 
