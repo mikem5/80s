@@ -6,7 +6,7 @@ import tld
 
 
 
-conn = psycopg2.connect("host=not_public dbname=eight user=not_public password=not_public")
+conn = psycopg2.connect("host=192.168.3.15 dbname=eight user=mikem_read password=54321")
 cur = conn.cursor()
 
 
@@ -51,7 +51,7 @@ yt_rows = sorted(yt_rows, key=lambda x: x[1], reverse=True)
 
 yt_posts = []
 
-for i in range(5):
+for i in range(8):
     x = yt_rows[i]
     if tld.get_tld(x[2]) == 'youtu.be':
 
@@ -62,8 +62,6 @@ for i in range(5):
             }
     yt_posts.append(di)
 
-
-print(yt_posts)
 
 
 
