@@ -5,8 +5,11 @@ import datetime
 import tld
 
 
+with open('db.info', 'r') as dbfile:
+    db_pw = dbfile.read().rstrip()
 
-conn = psycopg2.connect("host=192.168.3.15 dbname=eight user=mikem_read password=54321")
+
+conn = psycopg2.connect(db_pw)
 
 # need this or remote server breaks
 conn.set_client_encoding("utf-8")
